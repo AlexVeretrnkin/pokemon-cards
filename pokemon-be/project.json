@@ -1,0 +1,64 @@
+{
+  "name": "pokemon-be",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "pokemon-be/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/pokemon-be",
+        "main": "pokemon-be/src/main.ts",
+        "tsConfig": "pokemon-be/tsconfig.app.json",
+        "assets": ["pokemon-be/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "pokemon-be/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "pokemon-be:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "pokemon-be:build:development"
+        },
+        "production": {
+          "buildTarget": "pokemon-be:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["pokemon-be/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "pokemon-be/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

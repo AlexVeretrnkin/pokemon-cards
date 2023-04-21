@@ -3,9 +3,11 @@
   "compilerOptions": {
     "rootDir": ".",
     "sourceMap": true,
+    "strict": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2022",
