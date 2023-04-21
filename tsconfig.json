@@ -21,6 +21,7 @@
       "path": "./tsconfig.editor.json"
     }
   ],
+  "baseUrl": "src",
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
