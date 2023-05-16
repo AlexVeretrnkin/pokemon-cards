@@ -18,7 +18,8 @@
     "baseUrl": ".",
     "paths": {
       "@pokemon-cards/cart": ["cart/src/index.ts"],
-      "@pokemon-cards/shared/ui": ["shared/ui/src/index.ts"]
+      "@pokemon-cards/shared/ui": ["shared/ui/src/index.ts"],
+      "@pokemon-cards/shared/models": ["shared/models/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
