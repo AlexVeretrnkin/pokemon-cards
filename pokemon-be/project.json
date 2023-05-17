@@ -10,6 +10,18 @@
           "commands": [
             "npx ts-node --esm pokemon-be/prisma/seed.ts"
           ],
+          "envFile": "pokemon-be/env/.env",
+          "parallel": false
+      }
+    },
+    "prisma-generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "pokemon-be/prisma",
+          "commands": [
+            "npx prisma generate"
+          ],
+          "envFile": "pokemon-be/env/.env",
           "parallel": false
       }
     },

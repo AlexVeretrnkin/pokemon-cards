@@ -1,7 +1,5 @@
 import { INestApplication, Injectable } from '@nestjs/common';
-import { CreatePrismaArticleDto } from './dto/create-prisma.dto';
-import { UpdatePrismaDto } from './dto/update-prisma.dto';
-import { PrismaClient, PrismaPromise, Article } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class PrismaService extends PrismaClient {

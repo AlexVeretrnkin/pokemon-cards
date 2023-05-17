@@ -11,8 +11,8 @@ export class ArticlesService {
   ) {
   }
 
-  public create(createArticleDto: CreateArticleDto) {
-    return 'This action adds a new prisma';
+  public create(data: CreateArticleDto) {
+    return this.prisma.article.create({ data });
   }
 
   public findAllArticles(): PrismaPromise<Article[]> {
@@ -27,11 +27,14 @@ export class ArticlesService {
     return this.prisma.article.findUnique({ where: { id } });
   }
 
-  public update(id: number, updatePrismaDto: UpdateArticleDto) {
-    return `This action updates a #${id} prisma`;
+  public update(id: number, updateArticleDto: UpdateArticleDto) {
+    return this.prisma.article.update({
+      where: { id },
+      data: updateArticleDto,
+    });
   }
 
   public remove(id: number) {
-    return `This action removes a #${id} prisma`;
+    return this.prisma.article.delete({ where: { id } })
   }
 }
