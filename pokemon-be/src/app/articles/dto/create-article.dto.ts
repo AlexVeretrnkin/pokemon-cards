@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreatePrismaArticleDto {
+export class CreateArticleDto {
     @ApiProperty()
     public title!: string;
   

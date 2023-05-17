@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { ArticlesModule } from './articles/articles.module';
 import path from 'path';
 
 @Module({
@@ -16,7 +17,8 @@ import path from 'path';
       isGlobal: true,
       envFilePath: path.resolve(path.basename(__dirname), './env/.env')
     }),
-    PrismaModule
+    PrismaModule,
+    ArticlesModule
   ],
   controllers: [AppController],
   providers: [AppService],
