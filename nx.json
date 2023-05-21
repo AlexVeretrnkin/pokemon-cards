@@ -9,8 +9,7 @@
           "build",
           "lint",
           "test",
-          "e2e",
-          "prisma-seed"
+          "e2e"
         ]
       }
     }

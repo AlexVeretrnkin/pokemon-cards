@@ -25,6 +25,39 @@
           "parallel": false
       }
     },
+    "prisma-studio": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "pokemon-be/prisma",
+          "commands": [
+            "npx prisma studio"
+          ],
+          "envFile": "pokemon-be/env/.env",
+          "parallel": false
+      }
+    },
+    "prisma-migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "pokemon-be/prisma",
+          "commands": [
+            "npx prisma migrate dev --name {args.name}"
+          ],
+          "envFile": "pokemon-be/env/.env",
+          "parallel": false
+      }
+    },
+    "prisma-db-push": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "pokemon-be/prisma",
+          "commands": [
+            "npx prisma db push"
+          ],
+          "envFile": "pokemon-be/env/.env",
+          "parallel": false
+      }
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],

@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run BE",
+            "command": "npx nx run pokemon-be:serve",
+            "type": "shell",
+
+        },
+        {
+            "label": "Run Prisma Studio",
+            "type": "shell",
+            "command": "npx nx run pokemon-be:prisma-studio"
+        },
+        {
+            "label": "Run Pokemon BE",
+            "dependsOn": ["Run BE", "Run Prisma Studio"],
+            "problemMatcher": []
+        }
+    ]
+}
