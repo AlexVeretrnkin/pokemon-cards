@@ -5,14 +5,12 @@ import { UpdateArticleDto } from './dto/update-article.dto';
 import { PrismaPromise, Article } from '@prisma/client';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ArticleEntity } from './entities/article.entity';
-import { ConfigService } from '@nestjs/config';
 
 @Controller('articles')
 @ApiTags('articles')
 export class ArticlesController {
   constructor(
     private readonly articlesService: ArticlesService,
-    private readonly config: ConfigService
     ) {}
 
   @Post()

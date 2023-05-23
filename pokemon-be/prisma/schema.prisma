@@ -23,5 +23,5 @@ model User {
   surname String
   email String @unique
   password String
-  refreshToken String
+  refreshToken String?
 }

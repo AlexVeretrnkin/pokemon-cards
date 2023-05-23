@@ -1,11 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaPromise, Article } from '@prisma/client';
+import { PrismaPromise, User } from '@prisma/client';
 import * as argon2 from 'argon2';
 import { PrismaService } from '../prisma/prisma.service';
+import { CreateUserDtoApi } from './dto/create-user.dto';
+import { UpdateUserDtoApi } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
 
+  /**
+   * @deprecated
+   */
   async findOne(username: string): Promise<any | undefined> {
     const users = [
       {
@@ -28,30 +33,26 @@ export class UsersService {
   ) {
   }
 
-  public create(data: any) {
-    return this.prisma.article.create({ data });
+  public create(data: CreateUserDtoApi) {
+    return this.prisma.user.create({ data });
   }
 
-  public findAllArticles(): PrismaPromise<Article[]> {
-    return this.prisma.article.findMany({ where: { published: true } });
-  }
-
-  public findDrafts(): PrismaPromise<Article[]> {
-    return this.prisma.article.findMany({ where: { published: false } });
+  public findAllUsers(): PrismaPromise<User[]> {
+    return this.prisma.user.findMany();
   }
 
   public findJustOne(id: number) {
-    return this.prisma.article.findUnique({ where: { id } });
+    return this.prisma.user.findUnique({ where: { id } });
   }
 
-  public update(id: number, updateArticleDto: any) {
-    return this.prisma.article.update({
+  public update(id: number, updateUserDto: UpdateUserDtoApi) {
+    return this.prisma.user.update({
       where: { id },
-      data: updateArticleDto,
+      data: updateUserDto,
     });
   }
 
   public remove(id: number) {
-    return this.prisma.article.delete({ where: { id } })
+    return this.prisma.user.delete({ where: { id } })
   }
 }
