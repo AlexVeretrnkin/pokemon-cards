@@ -1,20 +1,33 @@
-import { Body, Controller, Post, HttpCode, HttpStatus, Get, UseGuards, Request, Logger } from '@nestjs/common';
+import { Body, Controller, Post, HttpCode, HttpStatus, Get, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
-import { AuthGuard } from '../guards/auth.guard';
+import { ApiTags } from '@nestjs/swagger';
+import { LoginDto } from '../dto/login.dto';
+import { AccessTokenGuard } from '../guards/access-token.guard';
+import { Request as Req } from 'express';
 
 @Controller('auth')
+@ApiTags('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  public signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.username, signInDto.password);
+  public signIn(@Body() loginDto: LoginDto) {
+    return this.authService.signIn(loginDto.email, loginDto.password);
   }
 
-  @UseGuards(AuthGuard)
+  @HttpCode(HttpStatus.OK)
+  @Get('refresh')
+  public refresh(@Request() req: any) {
+    return this.authService.refreshTokens(req.user['userId'], req.user['refreshToken']);
+  }
+
+  @UseGuards(AccessTokenGuard)
   @Get('profile')
-  getProfile(@Request() req: any) {
+  getProfile(@Request() req: Express.Request) {
+    console.log(req.user);
+    console.log(req.authInfo);
+
     return req.user;
   }
 }

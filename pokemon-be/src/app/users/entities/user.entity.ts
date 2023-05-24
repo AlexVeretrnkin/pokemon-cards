@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from '@prisma/client';
-export class UserEntity implements User {
+export class UserEntity implements Omit<User, 'password' | 'refreshToken'> {
     @ApiProperty()
     id!: number;
     @ApiProperty()
@@ -9,9 +9,4 @@ export class UserEntity implements User {
     surname!: string;
     @ApiProperty()
     email!: string;
-    @ApiProperty()
-    password!: string;
-    @ApiProperty()
-    refreshToken!: string | null;
-
 }

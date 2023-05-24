@@ -1,9 +1,11 @@
 import { JwtService } from '@nestjs/jwt';
-import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as argon2 from 'argon2';
 
 import { UsersService } from '../../users/users.service';
+import { AuthEntity } from '../entity/auth.entity';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -13,62 +15,66 @@ export class AuthService {
     private configService: ConfigService,
     ) {}
 
-  public async signIn(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
+  public async signIn(email: string, pass: string): Promise<AuthEntity> {
+    const user: User | null = await this.usersService.findByEmail(email);
 
-    const correctPassword: boolean = await argon2.verify(user.password, pass);
+    if (user) {
+      const correctPassword: boolean = await argon2.verify(user.password, pass);
 
-    if (!correctPassword) throw new UnauthorizedException();
+      if (!correctPassword) throw new UnauthorizedException();
 
-    const tokens = await this.getTokens(user.id, username);
+      const tokens: AuthEntity = await this.getTokens(user.id, user.email);
+      this.updateRefreshToken(user.id, tokens.refreshToken);
 
-    return tokens;
+      return tokens
+    }
+
+    throw new NotFoundException();
   }
 
-  public async refreshTokens(userId: string, refreshToken: string) {
-    const user = {} as any;
-    if (!user || !user.refreshToken)
-      throw new ForbiddenException('Access Denied');
+  public async refreshTokens(userId: number, refreshToken: string) {
+    const user: User | null = await this.usersService.findById(userId);
+    if (!user || !user.refreshToken) throw new ForbiddenException('Access Denied');
+
     const refreshTokenMatches = await argon2.verify(
       user.refreshToken,
       refreshToken,
     );
+ 
     if (!refreshTokenMatches) throw new ForbiddenException('Access Denied');
-    const tokens = await this.getTokens(user.id, user.username);
+
+    const tokens = await this.getTokens(user.id, user.email);
     await this.updateRefreshToken(user.id, tokens.refreshToken);
+
     return tokens;
   }
 
-  private async updateRefreshToken(userId: string, refreshToken: string) {
+  private async updateRefreshToken(userId: number, refreshToken: string) {
     const hashedRefreshToken = await argon2.hash(refreshToken);
-    // await this.usersService.update(userId, {
-    //   refreshToken: hashedRefreshToken,
-    // });
+    
+    await this.usersService.updateRefreshToken(userId, hashedRefreshToken);
   }
 
-  private async getTokens(userId: string, username: string): Promise<{
-    accessToken: string;
-    refreshToken: string;
-  }> {
+  private async getTokens(userId: number, email: string): Promise<AuthEntity> {
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
         {
-          sub: userId,
-          username,
+          userId,
+          email,
         },
         {
           secret: this.configService.get<string>('JWT_SECRET'),
-          expiresIn: '30s',
+          expiresIn: '360s',
         },
       ),
       this.jwtService.signAsync(
         {
-          sub: userId,
-          username,
+          userId,
+          email,
         },
         {
           secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
-          expiresIn: '360s',
+          expiresIn: '60m',
         },
       ),
     ]);

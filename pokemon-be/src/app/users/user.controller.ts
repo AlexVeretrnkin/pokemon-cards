@@ -27,7 +27,7 @@ export class UserController {
     @Get(':id')
     @ApiOkResponse({ type: UserEntity })
     public findOne(@Param('id') id: string) {
-      return this.usersService.findJustOne(+id);
+      return this.usersService.findById(+id);
     }
   
     @Patch(':id')
