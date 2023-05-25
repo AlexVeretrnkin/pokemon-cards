@@ -1,13 +1,13 @@
 {
-  "name": "pokemon-be-e2e",
+  "name": "sample-microservice-e2e",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "implicitDependencies": ["pokemon-be"],
+  "implicitDependencies": ["sample-microservice"],
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
       "options": {
-        "jestConfig": "pokemon-be-e2e/jest.config.ts",
+        "jestConfig": "sample-microservice-e2e/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -15,7 +15,7 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["pokemon-be-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["sample-microservice-e2e/**/*.{js,ts}"]
       }
     }
   }

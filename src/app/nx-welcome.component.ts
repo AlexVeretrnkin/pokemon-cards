@@ -464,7 +464,12 @@ import { CommonModule } from '@angular/common';
         <div id="middle-content">
           <div id="learning-materials" class="rounded shadow">
             <h2>Learning materials</h2>
-            <a href="https://nx.dev/getting-started/intro?utm_source=nx-project" target="_blank" rel="noreferrer" class="list-item-link">
+            <a
+              href="https://nx.dev/getting-started/intro?utm_source=nx-project"
+              target="_blank"
+              rel="noreferrer"
+              class="list-item-link"
+            >
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -496,7 +501,12 @@ import { CommonModule } from '@angular/common';
                 />
               </svg>
             </a>
-            <a href="https://blog.nrwl.io/?utm_source=nx-project" target="_blank" rel="noreferrer" class="list-item-link">
+            <a
+              href="https://blog.nrwl.io/?utm_source=nx-project"
+              target="_blank"
+              rel="noreferrer"
+              class="list-item-link"
+            >
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -528,7 +538,12 @@ import { CommonModule } from '@angular/common';
                 />
               </svg>
             </a>
-            <a href="https://www.youtube.com/@NxDevtools/videos?utm_source=nx-project&sub_confirmation=1" target="_blank" rel="noreferrer" class="list-item-link">
+            <a
+              href="https://www.youtube.com/@NxDevtools/videos?utm_source=nx-project&sub_confirmation=1"
+              target="_blank"
+              rel="noreferrer"
+              class="list-item-link"
+            >
               <svg
                 role="img"
                 viewBox="0 0 24 24"
@@ -558,7 +573,12 @@ import { CommonModule } from '@angular/common';
                 />
               </svg>
             </a>
-            <a href="https://nx.dev/angular-tutorial/1-code-generation?utm_source=nx-project" target="_blank" rel="noreferrer" class="list-item-link">
+            <a
+              href="https://nx.dev/angular-tutorial/1-code-generation?utm_source=nx-project"
+              target="_blank"
+              rel="noreferrer"
+              class="list-item-link"
+            >
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -590,7 +610,12 @@ import { CommonModule } from '@angular/common';
                 />
               </svg>
             </a>
-            <a href="https://nxplaybook.com/?utm_source=nx-project" target="_blank" rel="noreferrer" class="list-item-link">
+            <a
+              href="https://nxplaybook.com/?utm_source=nx-project"
+              target="_blank"
+              rel="noreferrer"
+              class="list-item-link"
+            >
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -628,7 +653,12 @@ import { CommonModule } from '@angular/common';
             </a>
           </div>
           <div id="other-links">
-            <a class="button-pill rounded shadow nx-console" href="https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console&utm_source=nx-project" target="_blank" rel="noreferrer">
+            <a
+              class="button-pill rounded shadow nx-console"
+              href="https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console&utm_source=nx-project"
+              target="_blank"
+              rel="noreferrer"
+            >
               <svg
                 fill="currentColor"
                 role="img"
@@ -658,24 +688,40 @@ import { CommonModule } from '@angular/common';
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <title>IntelliJ</title>
-                <path d="M0 0v24h24V0zm3.723 3.111h5v1.834h-1.39v6.277h1.39v1.834h-5v-1.834h1.444V4.945H3.723zm11.055 0H17v6.5c0 .612-.055 1.111-.222 1.556-.167.444-.39.777-.723 1.11-.277.279-.666.557-1.11.668a3.933 3.933 0 0 1-1.445.278c-.778 0-1.444-.167-1.944-.445a4.81 4.81 0 0 1-1.279-1.056l1.39-1.555c.277.334.555.555.833.722.277.167.611.278.945.278.389 0 .721-.111 1-.389.221-.278.333-.667.333-1.278zM2.222 19.5h9V21h-9z"></path>
+                <path
+                  d="M0 0v24h24V0zm3.723 3.111h5v1.834h-1.39v6.277h1.39v1.834h-5v-1.834h1.444V4.945H3.723zm11.055 0H17v6.5c0 .612-.055 1.111-.222 1.556-.167.444-.39.777-.723 1.11-.277.279-.666.557-1.11.668a3.933 3.933 0 0 1-1.445.278c-.778 0-1.444-.167-1.944-.445a4.81 4.81 0 0 1-1.279-1.056l1.39-1.555c.277.334.555.555.833.722.277.167.611.278.945.278.389 0 .721-.111 1-.389.221-.278.333-.667.333-1.278zM2.222 19.5h9V21h-9z"
+                ></path>
               </svg>
               <span>
                 Install Nx Console for JetBrains
-                <span>Available for WebStorm, Intellij IDEA Ultimate and more!</span>
+                <span
+                  >Available for WebStorm, Intellij IDEA Ultimate and
+                  more!</span
+                >
               </span>
             </a>
             <div id="nx-cloud" class="rounded shadow">
               <div>
-                <svg id="nx-cloud-logo" role="img" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="transparent" viewBox="0 0 24 24">
-                  <path stroke-width="2" d="M23 3.75V6.5c-3.036 0-5.5 2.464-5.5 5.5s-2.464 5.5-5.5 5.5-5.5 2.464-5.5 5.5H3.75C2.232 23 1 21.768 1 20.25V3.75C1 2.232 2.232 1 3.75 1h16.5C21.768 1 23 2.232 23 3.75Z" />
-                  <path stroke-width="2" d="M23 6v14.1667C23 21.7307 21.7307 23 20.1667 23H6c0-3.128 2.53867-5.6667 5.6667-5.6667 3.128 0 5.6666-2.5386 5.6666-5.6666C17.3333 8.53867 19.872 6 23 6Z" />
+                <svg
+                  id="nx-cloud-logo"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="currentColor"
+                  fill="transparent"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-width="2"
+                    d="M23 3.75V6.5c-3.036 0-5.5 2.464-5.5 5.5s-2.464 5.5-5.5 5.5-5.5 2.464-5.5 5.5H3.75C2.232 23 1 21.768 1 20.25V3.75C1 2.232 2.232 1 3.75 1h16.5C21.768 1 23 2.232 23 3.75Z"
+                  />
+                  <path
+                    stroke-width="2"
+                    d="M23 6v14.1667C23 21.7307 21.7307 23 20.1667 23H6c0-3.128 2.53867-5.6667 5.6667-5.6667 3.128 0 5.6666-2.5386 5.6666-5.6666C17.3333 8.53867 19.872 6 23 6Z"
+                  />
                 </svg>
                 <h2>
                   NxCloud
-                  <span>
-                    Enable faster CI & better DX
-                  </span>
+                  <span> Enable faster CI & better DX </span>
                 </h2>
               </div>
               <p>
@@ -683,9 +729,21 @@ import { CommonModule } from '@angular/common';
                 running:
               </p>
               <pre>nx connect-to-nx-cloud</pre>
-              <a href="https://nx.app/?utm_source=nx-project" target="_blank" rel="noreferrer"> What is Nx Cloud? </a>
+              <a
+                href="https://nx.app/?utm_source=nx-project"
+                target="_blank"
+                rel="noreferrer"
+              >
+                What is Nx Cloud?
+              </a>
             </div>
-            <a id="nx-repo" class="button-pill rounded shadow" href="https://github.com/nrwl/nx?utm_source=nx-project" target="_blank" rel="noreferrer">
+            <a
+              id="nx-repo"
+              class="button-pill rounded shadow"
+              href="https://github.com/nrwl/nx?utm_source=nx-project"
+              target="_blank"
+              rel="noreferrer"
+            >
               <svg
                 fill="currentColor"
                 role="img"
@@ -725,9 +783,9 @@ import { CommonModule } from '@angular/common';
               Add UI library
             </summary>
             <pre><span># Generate UI lib</span>
-nx g @nrwl/angular:lib ui
+nx g @nx/angular:lib ui
 <span># Add a component</span>
-nx g @nrwl/angular:component button --project ui</pre>
+nx g @nx/angular:component button --project ui</pre>
           </details>
           <details>
             <summary>

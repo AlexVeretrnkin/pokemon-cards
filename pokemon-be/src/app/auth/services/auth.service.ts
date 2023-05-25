@@ -6,6 +6,7 @@ import * as argon2 from 'argon2';
 import { UsersService } from '../../users/users.service';
 import { AuthEntity } from '../entity/auth.entity';
 import { User } from '@prisma/client';
+import { CreateUserDtoApi } from '../../users/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -30,6 +31,16 @@ export class AuthService {
     }
 
     throw new NotFoundException();
+  }
+
+  public async signUp(user: CreateUserDtoApi) {
+    const newUser:  CreateUserDtoApi = {
+      ...user,
+      password: await argon2.hash(user.password)
+    }
+
+
+    return this.usersService.create(newUser);
   }
 
   public async refreshTokens(userId: number, refreshToken: string) {
@@ -64,7 +75,7 @@ export class AuthService {
         },
         {
           secret: this.configService.get<string>('JWT_SECRET'),
-          expiresIn: '360s',
+          expiresIn: '30s',
         },
       ),
       this.jwtService.signAsync(
@@ -74,7 +85,7 @@ export class AuthService {
         },
         {
           secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
-          expiresIn: '60m',
+          expiresIn: '60s',
         },
       ),
     ]);

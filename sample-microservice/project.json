@@ -1,0 +1,64 @@
+{
+  "name": "sample-microservice",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "sample-microservice/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/sample-microservice",
+        "main": "sample-microservice/src/main.ts",
+        "tsConfig": "sample-microservice/tsconfig.app.json",
+        "assets": ["sample-microservice/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "sample-microservice/webpack.config.js",
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "sample-microservice:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "sample-microservice:build:development"
+        },
+        "production": {
+          "buildTarget": "sample-microservice:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["sample-microservice/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "sample-microservice/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

@@ -4,6 +4,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { LoginDto } from '../dto/login.dto';
 import { AccessTokenGuard } from '../guards/access-token.guard';
 import { Request as Req } from 'express';
+import { CreateUserDtoApi } from '../../users/dto/create-user.dto';
+import { RefreshTokenGuard } from '../guards/refresh-token.guard';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -11,13 +13,20 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @HttpCode(HttpStatus.OK)
-  @Post('login')
+  @Post('singin')
   public signIn(@Body() loginDto: LoginDto) {
     return this.authService.signIn(loginDto.email, loginDto.password);
   }
 
   @HttpCode(HttpStatus.OK)
+  @Post('singup')
+  public signUp(@Body() user: CreateUserDtoApi) {
+    return this.authService.signUp(user);
+  }
+
+  @HttpCode(HttpStatus.OK)
   @Get('refresh')
+  @UseGuards(RefreshTokenGuard)
   public refresh(@Request() req: any) {
     return this.authService.refreshTokens(req.user['userId'], req.user['refreshToken']);
   }
